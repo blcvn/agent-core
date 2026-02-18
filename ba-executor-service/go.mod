@@ -8,9 +8,11 @@ require (
 	github.com/blcvn/kratos-proto/go/ba-agent v1.1.0
 	github.com/blcvn/backend/services/pkg v0.0.0
 	github.com/blcvn/backend/services/ba-mcp-server v0.0.0
+	github.com/blcvn/backend/services/proto v0.0.0
 )
 
 replace (
 	github.com/blcvn/backend/services/pkg => ../../services/pkg
 	github.com/blcvn/backend/services/ba-mcp-server => ../../services/ba-mcp-server
+	github.com/blcvn/backend/services/proto => ../../services/proto
 )

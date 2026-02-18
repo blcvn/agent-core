@@ -49,6 +49,9 @@ type AgentPersona struct {
 	UpdatedAt        time.Time         `json:"updated_at"`
 }
 
+// Agent is an alias for AgentPersona
+type Agent = AgentPersona
+
 // AgentPerformance tracks agent quality metrics
 type AgentPerformance struct {
 	ID              uint      `gorm:"primaryKey" json:"id"`

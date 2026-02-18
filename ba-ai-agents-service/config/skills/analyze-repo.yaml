@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Skill
+metadata:
+  id: analyze-microservice-split
+  name: "Analyze Monolith for Microservices"
+spec:
+  description: "Scans repository and suggests microservices boundaries."
+  inputs: ["repo_path"]
+  outputs: ["report_markdown"]
+  steps:
+    - stepId: "check_structure"
+      action: "agent_call"
+      params:
+        agentId: "agent-architect-01"
+        prompt: "Scan repo at {repo_path} and list top-level modules."
+    - stepId: "dependencies"
+      action: "tool_call"
+      params:
+        tool: "dependency_graph_generator"
+        args:
+          path: "{repo_path}"
+    - stepId: "propose_split"
+      action: "agent_call"
+      params:
+        agentId: "agent-architect-01"
+        prompt: "Based on module list and dependencies, propose a split."

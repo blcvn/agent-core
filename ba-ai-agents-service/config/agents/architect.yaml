@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Agent
+metadata:
+  id: agent-architect-01
+  name: "System Architect"
+  labels:
+    domain: "backend"
+spec:
+  role: "ARCHITECT"
+  description: "Specialized in microservices architecture design and documentation."
+  capabilities:
+    - "system_design"
+    - "diagram_generation"
+  modelConfig:
+    provider: "anthropic"
+    model: "claude-3-opus-20240229"
+    temperature: 0.2
+    maxTokens: 4096
+  tools:
+    - "read_file"
+    - "list_dir"
+    - "mcp_confluence_search"
+  promptRef: "prompts/architect_system.md"

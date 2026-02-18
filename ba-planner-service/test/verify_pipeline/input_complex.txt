@@ -1,0 +1,163 @@
+BA AGENT SYSTEM - TỔNG QUAN SẢN PHẨM
+🎯 TỔNG QUAN
+Vấn đề hiện tại
+Business Analysts tại VNPAY đang đối mặt với những thách thức:
+
+Tốn thời gian: Tạo tài liệu thủ công mất 2-3 ngày/tính năng
+Thiếu kinh nghiệm: BA mới không biết đặt câu hỏi gì, dễ bỏ sót thông tin
+Không đồng nhất: Chất lượng tài liệu khác nhau giữa các BA
+Khó visualize: Stakeholders khó hình dung user journey từ tài liệu text
+Phân tán: Tài liệu nằm rải rác nhiều nơi
+Giải pháp: BA Agent System
+Hệ thống AI-powered giúp BA làm việc nhanh hơn 3-5 lần:
+
+✅ AI Assistant thông minh: Hướng dẫn từng bước, đặt câu hỏi có cấu trúc
+✅ Tạo tài liệu tự động: URD, FRD, UC, UI, Sequence, SRS trong vài phút
+✅ Visualize User Flows: Wireframes HTML cho từng bước trong hành trình người dùng
+✅ Tích hợp Confluence: Publish tài liệu trực tiếp, không cần copy/paste
+✅ Quản lý tập trung: Tất cả projects và features ở một chỗ
+👥 NGƯỜI DÙNG
+BA (Business Analyst)	~100 users	Cơ bản	• Quản lý projects/features của mình
+• Thực hiện Discovery, tạo tài liệu
+• Publish lên Confluence
+Lead (BA Lead)	~20 users	Mở rộng	• Xem tất cả projects của team (read-only)
+• Theo dõi tiến độ và hỗ trợ BAs
+• Tất cả chức năng của BA
+Admin (Administrator)	3-5 users	Toàn quyền	• Quản lý users và phân quyền
+• Quản lý system prompts
+• Toàn quyền trên mọi projects
+🏗️ KIẾN TRÚC HỆ THỐNG
+Cấu trúc phân cấp
+User (BA/Lead/Admin)
+  └── Projects
+       ├── Project 1 (VD: eKYC System)
+       │    ├── Feature 1.1 (VD: Face Recognition)
+       │    │    ├── Phase 1: Discovery
+       │    │    ├── Phase 2: User Flow
+       │    │    ├── Phase 3: UI Flow
+       │    │    ├── Phase 4: URD
+       │    │    ├── Phase 5: UC
+       │    │    ├── Phase 6: FRD
+       │    │    ├── Phase 7: Sequence Diagrams
+       │    │    └── Phase 8: SRS
+       │    └── Feature 1.2 (VD: Document OCR)
+       └── Project 2 (VD: Payment Gateway)
+            └── Feature 2.1 (VD: QR Payment)
+📦 8 MODULES CHÍNH
+Module 1️⃣: Authentication (Xác thực người dùng)
+Mục đích: Đăng nhập an toàn, nhanh chóng
+
+Công nghệ	Google OAuth 2.0
+Đặc điểm	• One-click login với Google Account
+• Chỉ chấp nhận email @vnpay.vn
+• Session 24 giờ, auto-logout khi hết hạn
+• Tự động lấy thông tin user (tên, email, avatar)
+Timeline	Sprint 1
+Module 2️⃣: User Management (Quản lý người dùng)
+Mục đích: Phân quyền rõ ràng, tự động hóa quản lý users
+
+Phân quyền	3 levels: BA, Lead, Admin
+Đặc điểm	• Tự động tạo tài khoản khi đăng nhập lần đầu
+• BA chỉ thấy projects của mình
+• Lead xem tất cả projects (read-only)
+• Admin quản lý users và prompts
+• Thay đổi level dễ dàng
+Timeline	Sprint 1
+Module 3️⃣: Project & Feature Management (Quản lý dự án)
+Mục đích: Tổ chức công việc có hệ thống
+
+Cấu trúc	Project → Features → Phases → Artifacts
+Đặc điểm	• Tạo projects và features không giới hạn
+• 8 phases: Discovery → User Flow → UI Flow → URD→ Use Cases → FRD → Sequence → SRS
+• Progress tracking cho mỗi feature
+• Cấu hình Confluence cho mỗi project
+• Phase dependencies (không thể skip steps)
+Timeline	Sprint 1
+Module 4️⃣: Discovery (Thu thập yêu cầu)
+Mục đích: AI hướng dẫn BA thu thập thông tin đầy đủ
+
+AI Role	Facilitator thông minh
+Đặc điểm	• AI đặt câu hỏi có cấu trúc với options
+• 4 categories: Stakeholders, Business Goals, Scope, Technical,...
+• Multi-select và free text input
+• Import BRD có sẵn, AI phân tích gaps
+• Lưu conversation history
+• Discovery summary tự động
+Timeline	Sprint 1
+Module 5️⃣: Document Generation (Tạo tài liệu tự động)
+Mục đích: AI tạo tài liệu chuyên nghiệp từ Discovery data
+
+8 loại tài liệu	Discovery → User Flow → UI Flow → URD→ Use Cases → FRD → Sequence → SRS
+Đặc điểm	• Generate trong 60-180 giây/tài liệu
+• Format XHTML tương thích Confluence
+• Edit trực tiếp trên UI (code editor)
+• Preview realtime
+• Regenerate khi cần
+• Streaming generation (thấy output khi AI đang tạo)
+Timeline	Sprint 1
+Module 6️⃣: Confluence Integration (Tích hợp Confluence)
+Mục đích: Publish tài liệu lên Confluence tự động
+
+Công nghệ	Confluence REST API + Personal Access Token
+Đặc điểm	• Kết nối với Confluence API
+• Publish tài liệu trực tiếp (không copy/paste)
+• Update page đã tồn tại (giữ version history)
+• Import từ Confluence về hệ thống
+• Tạo page hierarchy (parent/child structure)
+• Test connection trước khi lưu config
+Timeline	Sprint 1
+Module 7️⃣: Prompt Management (Quản lý Prompts)
+Mục đích: Admin điều chỉnh AI prompts không cần rebuild code
+
+ System Prompts	
+Đặc điểm	• Quản lý qua UI (code editor)
+• Preview realtime
+• Lưu vào file JSON
+• Reset về default nếu cần
+• Áp dụng ngay không cần restart
+• Variables {{xxx}} highlight
+Timeline	Sprint 1
+Module 8️⃣: UI Flow Viewer (Xem luồng giao diện)
+Mục đích: Visualize User Flows bằng wireframes HTML
+
+Input	User Flows
+Đặc điểm	• Generate wireframes cho mỗi step trong flow
+• Support Happy/Error/Alternative paths
+• Step-by-step navigation
+• Demo mode full-screen để present
+• Auto-play với fade transitions
+• Export HTML standalone để share
+• Context panel (User Action, System Response, Purpose)
+Timeline	Sprint 1
+🎬 WORKFLOW TỔNG QUÁT
+Quy trình làm việc của BA:
+1	Đăng nhập bằng Google Account @vnpay.vn	Vào hệ thống
+2	Tạo Project mới (VD: "eKYC System")	Project container
+3	Cấu hình Confluence cho project	Confluence connection
+4	Tạo Feature (VD: "Face Recognition")	Feature với phase = Discovery
+5	Discovery: Trả lời câu hỏi của AI
+• Stakeholders
+• Business Goals
+• Scope
+• Technical Requirements	Discovery data đầy đủ
++ Discovery summary
+6	UserFlow: Click "Generate User Flows"	
+7	UI Flow: Click "Generate UI Flows"	HTML wireframes theo User Flows
+8	URD: Click "Generate URD"	1 tài liệu XHTML
+7	Use Cases: Click "Generate Use Cases"	Use Cases document
+8	FRD: Click "Generate FRD"	1 tài liệu XHTML
+9	Sequence: Click "Generate Sequence Diagrams"	PlantUML diagrams
+10	SRS: Click "Generate SRS"	Software Requirements Spec
+11	Review & Edit: Sửa nội dung nếu cần	Tài liệu hoàn chỉnh
+12	Publish: Click "Publish to Confluence" cho mỗi tài liệu	3 pages trên Confluence (URD, FRD, SRS)
+💡 So sánh:
+• Truyền thống (thủ công): 2-3 ngày/feature (16-24 giờ)
+• Với BA Agent: 3-4 giờ/feature
+• Tiết kiệm: 80-85% thời gian ⚡
+
+📊 METRICS & KPIs
+Business Metrics
+Thời gian hoàn thành 1 feature	2-3 ngày	3-4 giờ (↓ 85%)
+Số features/BA/tháng	4-5 features	15-20 features (↑ 300%)
+Chất lượng tài liệu	Không đồng nhất	Đồng nhất 95%+
+Tỷ lệ thiếu thông tin	20-30%	<5%
