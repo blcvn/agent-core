@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"time"
 
-	v32 "github.com/blcvn/backend/services/ba-agent-service/domain/v3.2"
+	v32 "github.com/blcvn/backend/services/ba-persistence-service/internal/domain/v3.2"
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 )

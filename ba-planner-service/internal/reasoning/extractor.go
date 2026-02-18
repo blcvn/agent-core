@@ -5,8 +5,8 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/blcvn/backend/services/ba-agent-service/domain"
-	v32 "github.com/blcvn/backend/services/ba-agent-service/domain/v3.2"
+	"github.com/blcvn/backend/services/ba-planner-service/internal/domain"
+	v32 "github.com/blcvn/backend/services/ba-planner-service/internal/domain/v3.2"
 )
 
 // SectionExtractor identifies affected sections in the document

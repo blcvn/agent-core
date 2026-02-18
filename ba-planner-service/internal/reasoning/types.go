@@ -3,7 +3,7 @@ package chat_agent
 import (
 	"time"
 
-	v32 "github.com/blcvn/backend/services/ba-agent-service/domain/v3.2"
+	v32 "github.com/blcvn/backend/services/ba-planner-service/internal/domain/v3.2"
 )
 
 // CommentIntent represents the classified intent of a user's comment

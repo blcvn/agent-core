@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/blcvn/backend/services/ba-agent-service/entities"
+	"github.com/blcvn/backend/services/ba-planner-service/internal/entities"
 	"github.com/google/uuid"
 )
 

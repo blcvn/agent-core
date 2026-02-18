@@ -12,7 +12,7 @@ import (
 	"github.com/blcvn/backend/services/ba-persistence-service/internal/repository/review"
 	"github.com/blcvn/backend/services/ba-persistence-service/internal/repository/task"
 
-	v32 "github.com/blcvn/backend/services/ba-agent-service/domain/v3.2"
+	v32 "github.com/blcvn/backend/services/ba-persistence-service/internal/domain/v3.2"
 	persistencepb "github.com/blcvn/backend/services/proto/persistence"
 	baagent "github.com/blcvn/kratos-proto/go/ba-agent"
 	"google.golang.org/protobuf/types/known/timestamppb"
@@ -163,10 +163,114 @@ func (s *PersistenceServer) GetDocument(ctx context.Context, req *persistencepb.
 	}
 
 	return &persistencepb.GetDocumentResponse{
-		Id:      doc.ID,
-		Title:   doc.ModuleName, // Mapping ModuleName to Title for now
-		Content: doc.Content,
+		Id:         doc.ID,
+		Title:      doc.ModuleName, // Mapping ModuleName to Title for now
+		Content:    doc.Content,
+		Author:     "", // TODO: Add Author to v32.Document?
+		ProjectId:  doc.ProjectID,
+		ParentId:   doc.ParentDocumentID,
+		RootId:     doc.RootDocumentID,
+		ModuleName: doc.ModuleName,
+		Tier:       doc.Tier.String(),
+		Status:     string(doc.Status),
+		Version:    int32(doc.Version),
+		CreatedAt:  timestamppb.New(doc.CreatedAt),
+		UpdatedAt:  timestamppb.New(doc.UpdatedAt),
 	}, nil
+}
+
+// ListDocuments retrieves documents with optional filters
+func (s *PersistenceServer) ListDocuments(ctx context.Context, req *persistencepb.ListDocumentsRequest) (*persistencepb.ListDocumentsResponse, error) {
+	var docs []*v32.Document
+	var err error
+
+	// If parent_id and tier are specified, use GetByParentId for exact match
+	if req.ParentId != "" && req.Tier != "" {
+		var tier v32.RequirementTier
+		switch req.Tier {
+		case "PRD":
+			tier = v32.TierPRD
+		case "URD_INDEX":
+			tier = v32.TierURDIndex
+		case "URD_OUTLINE":
+			tier = v32.TierURDOutline
+		case "URD_FULL":
+			tier = v32.TierURDFull
+		default:
+			tier = v32.TierUnspecified
+		}
+
+		doc, err := s.docRepo.GetByParentId(ctx, req.ParentId, tier)
+		if err != nil {
+			return nil, fmt.Errorf("failed to get document by parent and tier: %w", err)
+		}
+		docs = []*v32.Document{doc}
+	} else if req.ParentId != "" {
+		// List all children of a parent
+		docs, err = s.docRepo.GetByParent(ctx, req.ParentId)
+		if err != nil {
+			return nil, fmt.Errorf("failed to list documents by parent: %w", err)
+		}
+	} else if req.ProjectId != "" {
+		// List by project
+		docs, err = s.docRepo.ListByProject(ctx, req.ProjectId)
+		if err != nil {
+			return nil, fmt.Errorf("failed to list documents by project: %w", err)
+		}
+	} else {
+		return &persistencepb.ListDocumentsResponse{}, nil // No filter = empty
+	}
+
+	var pbDocs []*persistencepb.GetDocumentResponse
+	for _, doc := range docs {
+		pbDocs = append(pbDocs, &persistencepb.GetDocumentResponse{
+			Id:         doc.ID,
+			Title:      doc.ModuleName,
+			Content:    doc.Content,
+			ProjectId:  doc.ProjectID,
+			ParentId:   doc.ParentDocumentID,
+			RootId:     doc.RootDocumentID,
+			ModuleName: doc.ModuleName,
+			Tier:       doc.Tier.String(),
+			Status:     string(doc.Status),
+			Version:    int32(doc.Version),
+			CreatedAt:  timestamppb.New(doc.CreatedAt),
+			UpdatedAt:  timestamppb.New(doc.UpdatedAt),
+		})
+	}
+
+	return &persistencepb.ListDocumentsResponse{Documents: pbDocs}, nil
+}
+
+// UpdateDocument updates a document's content and/or status
+func (s *PersistenceServer) UpdateDocument(ctx context.Context, req *persistencepb.UpdateDocumentRequest) (*persistencepb.UpdateDocumentResponse, error) {
+	// Fetch existing document
+	doc, err := s.docRepo.Get(ctx, req.DocumentId)
+	if err != nil {
+		return &persistencepb.UpdateDocumentResponse{
+			Success: false,
+			Error:   fmt.Sprintf("document not found: %v", err),
+		}, nil
+	}
+
+	// Apply updates
+	if req.Content != "" {
+		doc.Content = req.Content
+	}
+	if req.Status != "" {
+		doc.Status = v32.DocumentStatus(req.Status)
+	}
+	doc.UpdatedAt = time.Now()
+	doc.Version++
+
+	if err := s.docRepo.Update(ctx, doc); err != nil {
+		return &persistencepb.UpdateDocumentResponse{
+			Success: false,
+			Error:   err.Error(),
+		}, nil
+	}
+
+	return &persistencepb.UpdateDocumentResponse{Success: true}, nil
 }
 
 // Graph Stub
@@ -201,6 +305,52 @@ func (s *PersistenceServer) CreateApproval(ctx context.Context, req *persistence
 }
 
 // Review Stub
+// Review Implementation
 func (s *PersistenceServer) CreateReview(ctx context.Context, req *persistencepb.CreateReviewRequest) (*persistencepb.CreateReviewResponse, error) {
-	return &persistencepb.CreateReviewResponse{Success: true}, nil
+	// Fetch document to get Tier
+	doc, err := s.docRepo.Get(ctx, req.DocumentId)
+	if err != nil {
+		return nil, fmt.Errorf("failed to get document: %w", err)
+	}
+
+	review := &v32.Review{
+		ID:         fmt.Sprintf("rev_%d", time.Now().UnixNano()),
+		DocumentID: req.DocumentId,
+		Tier:       doc.Tier,
+		Comment:    req.Comments, // Ignoring req.Reviewer as v32.Review lacks it
+		ActionType: v32.ActionPending,
+		CreatedAt:  time.Now(),
+	}
+
+	if err := s.reviewRepo.Create(ctx, review); err != nil {
+		return nil, fmt.Errorf("failed to create review: %w", err)
+	}
+
+	return &persistencepb.CreateReviewResponse{
+		Success: true,
+	}, nil
+}
+
+func (s *PersistenceServer) ListReviews(ctx context.Context, req *persistencepb.ListReviewsRequest) (*persistencepb.ListReviewsResponse, error) {
+	reviews, err := s.reviewRepo.GetByDocumentID(ctx, req.DocumentId)
+	if err != nil {
+		return nil, fmt.Errorf("failed to list reviews: %w", err)
+	}
+
+	var pbReviews []*persistencepb.Review
+	for _, r := range reviews {
+		pbReviews = append(pbReviews, &persistencepb.Review{
+			Id:         r.ID,
+			DocumentId: r.DocumentID,
+			Reviewer:   "", // Not stored
+			Comments:   r.Comment,
+			Status:     string(r.ActionType), // Mapping ActionType to Status/ActionType
+			ActionType: string(r.ActionType),
+			CreatedAt:  timestamppb.New(r.CreatedAt),
+		})
+	}
+
+	return &persistencepb.ListReviewsResponse{
+		Reviews: pbReviews,
+	}, nil
 }

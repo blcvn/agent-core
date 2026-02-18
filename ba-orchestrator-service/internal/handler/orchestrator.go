@@ -121,7 +121,7 @@ func (o *Orchestrator) ExecuteTask(ctx context.Context, taskID string) error {
 		Language:    "go",
 	}
 
-	if err := o.producer.Enqueue(ctx, queue.TaskTypeGenCode, payload, 0); err != nil {
+	if _, err := o.producer.Enqueue(ctx, queue.TaskTypeGenCode, payload); err != nil {
 		task.Status = models.TaskStatusFailed
 		task.Error = err.Error()
 		o.db.Save(&task)

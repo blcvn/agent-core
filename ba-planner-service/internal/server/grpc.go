@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"log"
 
-	engine "github.com/blcvn/backend/services/ba-planner-service/internal/engine/react"
+	engine "github.com/blcvn/backend/services/ba-planner-service/internal/engine"
 	plannerpb "github.com/blcvn/backend/services/proto/planner"
 	baagent "github.com/blcvn/kratos-proto/go/ba-agent"
 )

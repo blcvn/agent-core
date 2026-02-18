@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/blcvn/backend/services/ba-agent-service/domain"
+	"github.com/blcvn/backend/services/ba-planner-service/internal/domain"
 )
 
 // IntentClassifier is responsible for classifying the intent of a user's comment

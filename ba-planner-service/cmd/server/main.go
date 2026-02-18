@@ -5,7 +5,7 @@ import (
 	"net"
 	"os"
 
-	engine "github.com/blcvn/backend/services/ba-planner-service/internal/engine/react"
+	engine "github.com/blcvn/backend/services/ba-planner-service/internal/engine"
 	"github.com/blcvn/backend/services/ba-planner-service/internal/server"
 	executorpb "github.com/blcvn/backend/services/proto/executor"
 	plannerpb "github.com/blcvn/backend/services/proto/planner"

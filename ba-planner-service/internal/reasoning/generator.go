@@ -6,8 +6,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/blcvn/backend/services/ba-agent-service/domain"
-	v32 "github.com/blcvn/backend/services/ba-agent-service/domain/v3.2"
+	"github.com/blcvn/backend/services/ba-planner-service/internal/domain"
+	v32 "github.com/blcvn/backend/services/ba-planner-service/internal/domain/v3.2"
 )
 
 // ModificationGenerator generates document modifications using LLM
