@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/blcvn/backend/services/ba-planner-service/internal/domain"
-	v32 "github.com/blcvn/backend/services/ba-planner-service/internal/domain/v3.2"
+	"github.com/blcvn/backend/services/pkg/domain"
+	v32 "github.com/blcvn/backend/services/pkg/domain/v3.2"
 )
 
 // ChatAgent orchestrates the interactive document update process

@@ -12,7 +12,7 @@ import (
 	"github.com/blcvn/backend/services/ba-persistence-service/internal/repository/review"
 	"github.com/blcvn/backend/services/ba-persistence-service/internal/repository/task"
 
-	v32 "github.com/blcvn/backend/services/ba-persistence-service/internal/domain/v3.2"
+	v32 "github.com/blcvn/backend/services/pkg/domain/v3.2"
 	persistencepb "github.com/blcvn/backend/services/proto/persistence"
 	baagent "github.com/blcvn/kratos-proto/go/ba-agent"
 	"google.golang.org/protobuf/types/known/timestamppb"

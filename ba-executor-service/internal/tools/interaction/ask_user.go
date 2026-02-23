@@ -4,6 +4,8 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+
+	"github.com/blcvn/backend/services/pkg/domain/tool"
 )
 
 // AskUserTool allows the agent to ask the user for input
@@ -44,5 +46,5 @@ func (t *AskUserTool) Execute(ctx context.Context, input string) (string, error)
 	if err := json.Unmarshal([]byte(input), &params); err != nil {
 		return "", fmt.Errorf("invalid input: %v", err)
 	}
-	return "", &ErrRequiresInput{Question: params.Question}
+	return "", &tool.ErrRequiresInput{Question: params.Question}
 }
