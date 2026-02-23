@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	executorpb "github.com/blcvn/backend/services/proto/executor"
+	executorpb "github.com/blcvn/ba-shared-libs/proto/executor"
 	aiproxy "github.com/blcvn/kratos-proto/go/ai-proxy"
 	baagent "github.com/blcvn/kratos-proto/go/ba-agent"
 )

@@ -3,7 +3,7 @@ package handlers
 import (
 	"net/http"
 
-	knowledgepb "github.com/blcvn/backend/services/proto/knowledge"
+	knowledgepb "github.com/blcvn/ba-shared-libs/proto/knowledge"
 	"github.com/gin-gonic/gin"
 )
 

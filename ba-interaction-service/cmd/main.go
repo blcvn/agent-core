@@ -6,8 +6,8 @@ import (
 
 	"github.com/blcvn/backend/services/ba-interaction-service/internal/handlers"
 	"github.com/blcvn/backend/services/ba-interaction-service/internal/ws"
-	knowledgepb "github.com/blcvn/backend/services/proto/knowledge"
-	orchestratorpb "github.com/blcvn/backend/services/proto/orchestrator"
+	knowledgepb "github.com/blcvn/ba-shared-libs/proto/knowledge"
+	orchestratorpb "github.com/blcvn/ba-shared-libs/proto/orchestrator"
 	"github.com/gin-gonic/gin"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"

@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/blcvn/backend/services/pkg/domain/tool"
+	"github.com/blcvn/ba-shared-libs/pkg/domain/tool"
 )
 
 // AskUserTool allows the agent to ask the user for input

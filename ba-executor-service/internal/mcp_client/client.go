@@ -8,7 +8,7 @@ import (
 	"os/exec"
 	"sync"
 
-	"github.com/blcvn/backend/services/pkg/mcp"
+	"github.com/blcvn/ba-shared-libs/pkg/mcp"
 )
 
 type Client struct {

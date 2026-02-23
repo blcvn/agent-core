@@ -5,8 +5,8 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/blcvn/backend/services/pkg/domain"
-	v32 "github.com/blcvn/backend/services/pkg/domain/v3.2"
+	"github.com/blcvn/ba-shared-libs/pkg/domain"
+	v32 "github.com/blcvn/ba-shared-libs/pkg/domain/v3.2"
 )
 
 // SectionExtractor identifies affected sections in the document

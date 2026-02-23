@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"github.com/blcvn/backend/services/ba-executor-service/internal/tools"
-	executorpb "github.com/blcvn/backend/services/proto/executor"
+	executorpb "github.com/blcvn/ba-shared-libs/proto/executor"
 )
 
 // ExecutorServer implements the gRPC server for tool execution

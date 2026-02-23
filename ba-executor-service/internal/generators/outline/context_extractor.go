@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 
-	v32 "github.com/blcvn/backend/services/pkg/domain/v3.2"
+	v32 "github.com/blcvn/ba-shared-libs/pkg/domain/v3.2"
 )
 
 // ContextExtractor extracts relevant context from Knowledge Graph for Outline generation

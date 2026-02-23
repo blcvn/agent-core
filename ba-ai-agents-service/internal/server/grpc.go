@@ -5,7 +5,7 @@ import (
 
 	"github.com/blcvn/backend/services/ba-ai-agents-service/internal/handler"
 	"github.com/blcvn/backend/services/ba-ai-agents-service/internal/models"
-	aiagentspb "github.com/blcvn/backend/services/proto/ai_agents"
+	aiagentspb "github.com/blcvn/ba-shared-libs/proto/ai_agents"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )

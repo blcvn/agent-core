@@ -3,8 +3,8 @@ module github.com/blcvn/backend/services/ba-persistence-service
 go 1.24.0
 
 require (
-	github.com/blcvn/backend/services/pkg v0.0.0
-	github.com/blcvn/backend/services/proto v0.0.0
+	github.com/blcvn/ba-shared-libs/pkg v0.0.0
+	github.com/blcvn/ba-shared-libs/proto v0.0.0
 	github.com/blcvn/kratos-proto/go/ba-agent v1.2.0
 	google.golang.org/grpc v1.78.0
 	google.golang.org/protobuf v1.36.11
@@ -31,7 +31,6 @@ require (
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20260128011058-8636f8732409 // indirect
 )
 
-replace (
-	github.com/blcvn/backend/services/pkg => ../../services/pkg
-	github.com/blcvn/backend/services/proto => ../../services/proto
-)
+replace github.com/blcvn/ba-shared-libs/pkg => ../../ba-shared-libs/pkg
+
+replace github.com/blcvn/ba-shared-libs/proto => ../../ba-shared-libs/proto

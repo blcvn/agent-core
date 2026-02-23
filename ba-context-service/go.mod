@@ -3,7 +3,7 @@ module github.com/blcvn/backend/services/ba-context-service
 go 1.24.0
 
 require (
-	github.com/blcvn/backend/services/proto v0.0.0
+	github.com/blcvn/ba-shared-libs/proto v0.0.0
 	github.com/redis/go-redis/v9 v9.17.2
 	google.golang.org/grpc v1.78.0
 	gorm.io/driver/postgres v1.6.0
@@ -34,7 +34,6 @@ require (
 	google.golang.org/protobuf v1.36.11 // indirect
 )
 
-replace (
-	github.com/blcvn/backend/services/pkg => ../../services/pkg
-	github.com/blcvn/backend/services/proto => ../../services/proto
-)
+replace github.com/blcvn/ba-shared-libs/pkg => ../../ba-shared-libs/pkg
+
+replace github.com/blcvn/ba-shared-libs/proto => ../../ba-shared-libs/proto

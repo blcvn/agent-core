@@ -6,7 +6,7 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/blcvn/backend/services/pkg/queue"
+	"github.com/blcvn/ba-shared-libs/pkg/queue"
 	"github.com/hibiken/asynq"
 )
 

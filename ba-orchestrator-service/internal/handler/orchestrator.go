@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"github.com/blcvn/backend/services/ba-orchestrator-service/internal/models"
-	"github.com/blcvn/backend/services/pkg/queue"
+	"github.com/blcvn/ba-shared-libs/pkg/queue"
 	"gorm.io/gorm"
 )
 

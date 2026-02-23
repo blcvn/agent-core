@@ -9,7 +9,7 @@ import (
 
 	"github.com/blcvn/backend/services/ba-state-service/internal/cache"
 	"github.com/blcvn/backend/services/ba-state-service/internal/server"
-	statepb "github.com/blcvn/backend/services/proto/state"
+	statepb "github.com/blcvn/ba-shared-libs/proto/state"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 )

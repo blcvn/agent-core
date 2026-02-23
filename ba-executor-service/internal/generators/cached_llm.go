@@ -8,7 +8,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/blcvn/backend/services/pkg/domain"
+	"github.com/blcvn/ba-shared-libs/pkg/domain"
 	"github.com/go-redis/redis/v8"
 )
 

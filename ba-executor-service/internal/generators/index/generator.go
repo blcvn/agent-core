@@ -7,9 +7,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/blcvn/backend/services/pkg/domain"
-	v32 "github.com/blcvn/backend/services/pkg/domain/v3.2"
-	"github.com/blcvn/backend/services/pkg/infrastructure/prompt"
+	"github.com/blcvn/ba-shared-libs/pkg/domain"
+	v32 "github.com/blcvn/ba-shared-libs/pkg/domain/v3.2"
+	"github.com/blcvn/ba-shared-libs/pkg/infrastructure/prompt"
 )
 
 // GeneratorV2 is the main URD Index generator using KG context

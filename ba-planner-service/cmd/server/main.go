@@ -7,8 +7,8 @@ import (
 
 	engine "github.com/blcvn/backend/services/ba-planner-service/internal/engine"
 	"github.com/blcvn/backend/services/ba-planner-service/internal/server"
-	executorpb "github.com/blcvn/backend/services/proto/executor"
-	plannerpb "github.com/blcvn/backend/services/proto/planner"
+	executorpb "github.com/blcvn/ba-shared-libs/proto/executor"
+	plannerpb "github.com/blcvn/ba-shared-libs/proto/planner"
 	aiproxy "github.com/blcvn/kratos-proto/go/ai-proxy"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"

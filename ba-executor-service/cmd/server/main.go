@@ -8,7 +8,7 @@ import (
 	"github.com/blcvn/backend/services/ba-executor-service/internal/server"
 	"github.com/blcvn/backend/services/ba-executor-service/internal/tools"
 	"github.com/blcvn/backend/services/ba-executor-service/internal/tools/interaction"
-	executorpb "github.com/blcvn/backend/services/proto/executor"
+	executorpb "github.com/blcvn/ba-shared-libs/proto/executor"
 
 	aiproxy "github.com/blcvn/kratos-proto/go/ai-proxy"
 	prompt "github.com/blcvn/kratos-proto/go/prompt"

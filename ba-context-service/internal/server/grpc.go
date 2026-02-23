@@ -3,7 +3,7 @@ package server
 import (
 	"context"
 
-	contextpb "github.com/blcvn/backend/services/proto/context"
+	contextpb "github.com/blcvn/ba-shared-libs/proto/context"
 )
 
 type ContextServer struct {

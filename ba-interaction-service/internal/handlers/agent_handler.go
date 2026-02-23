@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"time"
 
-	orchestratorpb "github.com/blcvn/backend/services/proto/orchestrator"
+	orchestratorpb "github.com/blcvn/ba-shared-libs/proto/orchestrator"
 	"github.com/gin-gonic/gin"
 )
 

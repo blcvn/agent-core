@@ -5,7 +5,7 @@ import (
 	"log"
 
 	"github.com/blcvn/backend/services/ba-orchestrator-service/internal/usecases"
-	orchestratorpb "github.com/blcvn/backend/services/proto/orchestrator"
+	orchestratorpb "github.com/blcvn/ba-shared-libs/proto/orchestrator"
 )
 
 type OrchestratorServer struct {

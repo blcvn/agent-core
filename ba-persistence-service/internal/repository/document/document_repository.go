@@ -3,7 +3,7 @@ package document
 import (
 	"context"
 
-	v32 "github.com/blcvn/backend/services/pkg/domain/v3.2"
+	v32 "github.com/blcvn/ba-shared-libs/pkg/domain/v3.2"
 	"gorm.io/gorm"
 )
 

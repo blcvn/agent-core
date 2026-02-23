@@ -6,7 +6,7 @@ import (
 	"net"
 
 	"github.com/blcvn/backend/services/ba-context-service/internal/server"
-	contextpb "github.com/blcvn/backend/services/proto/context"
+	contextpb "github.com/blcvn/ba-shared-libs/proto/context"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 )

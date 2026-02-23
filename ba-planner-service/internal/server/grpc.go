@@ -6,7 +6,7 @@ import (
 	"log"
 
 	engine "github.com/blcvn/backend/services/ba-planner-service/internal/engine"
-	plannerpb "github.com/blcvn/backend/services/proto/planner"
+	plannerpb "github.com/blcvn/ba-shared-libs/proto/planner"
 	baagent "github.com/blcvn/kratos-proto/go/ba-agent"
 )
 

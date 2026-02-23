@@ -4,7 +4,7 @@ import (
 	"context"
 
 	"github.com/blcvn/backend/services/ba-state-service/internal/cache"
-	statepb "github.com/blcvn/backend/services/proto/state"
+	statepb "github.com/blcvn/ba-shared-libs/proto/state"
 )
 
 type StateServer struct {

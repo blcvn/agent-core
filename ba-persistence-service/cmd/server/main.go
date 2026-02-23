@@ -12,8 +12,8 @@ import (
 	"github.com/blcvn/backend/services/ba-persistence-service/internal/repository/review"
 	"github.com/blcvn/backend/services/ba-persistence-service/internal/repository/task"
 	"github.com/blcvn/backend/services/ba-persistence-service/internal/server"
-	"github.com/blcvn/backend/services/pkg/infrastructure/postgres"
-	persistencepb "github.com/blcvn/backend/services/proto/persistence"
+	"github.com/blcvn/ba-shared-libs/pkg/infrastructure/postgres"
+	persistencepb "github.com/blcvn/ba-shared-libs/proto/persistence"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 )

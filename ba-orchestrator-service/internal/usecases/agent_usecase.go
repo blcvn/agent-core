@@ -5,8 +5,8 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/blcvn/backend/services/pkg/infrastructure/queue"
-	persistencepb "github.com/blcvn/backend/services/proto/persistence"
+	"github.com/blcvn/ba-shared-libs/pkg/infrastructure/queue"
+	persistencepb "github.com/blcvn/ba-shared-libs/proto/persistence"
 	baagent "github.com/blcvn/kratos-proto/go/ba-agent"
 	"github.com/google/uuid"
 )

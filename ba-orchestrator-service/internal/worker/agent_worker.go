@@ -8,9 +8,9 @@ import (
 	"log"
 	"time"
 
-	"github.com/blcvn/backend/services/pkg/infrastructure/queue"
-	persistencepb "github.com/blcvn/backend/services/proto/persistence"
-	plannerpb "github.com/blcvn/backend/services/proto/planner"
+	"github.com/blcvn/ba-shared-libs/pkg/infrastructure/queue"
+	persistencepb "github.com/blcvn/ba-shared-libs/proto/persistence"
+	plannerpb "github.com/blcvn/ba-shared-libs/proto/planner"
 	baagent "github.com/blcvn/kratos-proto/go/ba-agent"
 )
 
